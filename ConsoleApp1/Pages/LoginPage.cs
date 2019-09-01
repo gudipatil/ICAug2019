@@ -25,8 +25,12 @@ namespace ConsoleApp1
             ExcelReader.PopulateInCollection("Login");
             string usrname = ExcelReader.ReadData(2, "UserName");
             string pwd = ExcelReader.ReadData(2, "Password");
-            username.SendKeys(usrname);
-            password.SendKeys(pwd);
+
+            string usrcmd = String.Format("document.getElementById('UserName').value = '{0}'", usrname);
+            string pwdcmd = String.Format("document.getElementById('Password').value = '{0}'", pwd);
+            JSExecutor.JavaScriptExec(driver, usrcmd);
+            JSExecutor.JavaScriptExec(driver, pwdcmd);
+
             loginbtn.Click();
         }
         internal void LoginFailure()

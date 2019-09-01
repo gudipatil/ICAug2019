@@ -7,9 +7,14 @@ using System.Threading.Tasks;
 namespace ConsoleApp1.Utilities
 {
     class ExcelReader
-    {
-        public static void PopulateInCollection(string sheetname, string filename = "C:\\Users\\lavan\\Desktop\\LavanyaIC\\TurnUpPortalTestData.xlsx")
+    { 
+        
+        public static void PopulateInCollection(string sheetname, string filename = null)
         {
+            if(filename == null)
+            {
+                filename = AppDomain.CurrentDomain.BaseDirectory.Replace(@"ConsoleApp1\bin\Debug\","TurnUpPortalTestData.xlsx").Replace(@"\", @"\\");
+            }
             ExcelLib.PopulateInCollection(filename, sheetname);
         }
 

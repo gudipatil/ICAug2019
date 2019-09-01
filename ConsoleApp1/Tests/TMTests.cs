@@ -67,6 +67,7 @@ namespace ConsoleApp1
             homeInstance.VerifyHomePage();
             homeInstance.ClickAdminstration();
             homeInstance.ClickTimenMaterial();
+
             TimenMaterialPage tmPage = new TimenMaterialPage(driver);
             string result = tmPage.EditValidDataandSave("Material", "ICAug19", "Selenium Training", "$155.00", "Time", "ICAug19_edit", "Selenium Training Edit", "$200");
             Assert.IsTrue("success" == result, "Edit failed");
@@ -79,8 +80,10 @@ namespace ConsoleApp1
             HomePage homeInstance = new HomePage(driver);
             homeInstance.ClickAdminstration();
             homeInstance.ClickTimenMaterial();
+
             TimenMaterialPage tmPage = new TimenMaterialPage(driver);
             Assert.IsTrue("success" == tmPage.DeleteData("Material", "ICAug19", "Selenium Training", "$155.00", "ok"), "Delete Failed");
+
             homeInstance.ClickAdminstration();
             homeInstance.ClickTimenMaterial();
             Assert.IsFalse("RecordFound"== tmPage.ValidateData("Material", "ICAug19", "Selenium Training", "$155.00"), "Validate Failed");

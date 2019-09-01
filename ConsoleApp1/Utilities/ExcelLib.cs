@@ -14,7 +14,7 @@ namespace ConsoleApp1.Utilities
     class ExcelLib
     {
         private static readonly List<Datacollection> DataCol = new List<Datacollection>();
-
+        
         // The following code helps to quit the windows in which you only need to pass the name of excel.
         // ReSharper disable once UnusedMember.Local
 

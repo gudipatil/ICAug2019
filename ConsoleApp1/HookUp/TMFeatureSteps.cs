@@ -36,7 +36,6 @@ namespace ConsoleApp1.HookUp
             homeInstance.VerifyHomePage();
             homeInstance.ClickAdminstration();
             homeInstance.ClickTimenMaterial();
-            Console.WriteLine("navigation success");
         }
 
         [Then(@"I should be able to create a time and material record\.")]
@@ -47,10 +46,12 @@ namespace ConsoleApp1.HookUp
             string code = ExcelReader.ReadData(2, "Code");
             string description = ExcelReader.ReadData(2, "Description");
             string price = ExcelReader.ReadData(2, "PricePerUnit");
+
             TimenMaterialPage tmPage = new TimenMaterialPage(driver);
             tmPage.ClickCreateNew();
             tmPage.EnterValidDataandSave(typecode, code, description, price);
             Assert.IsTrue("RecordFound" == tmPage.ValidateData(typecode, code, description, "$"+price), "Created record not found");
+
             driver.Quit();
         }
 
@@ -75,6 +76,7 @@ namespace ConsoleApp1.HookUp
             homeInstance.ClickAdminstration();
             homeInstance.ClickTimenMaterial();
             Assert.IsTrue("RecordNotFound" == tmPage.ValidateData(typecode, code, description, "$"+price), "Validate Failed");
+
             driver.Quit();
         }
 

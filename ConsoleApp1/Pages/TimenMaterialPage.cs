@@ -18,7 +18,7 @@ namespace ConsoleApp1
         }
         internal void ClickCreateNew()
         { 
-            //Click create new button
+            // Click create new button
             driver.FindElement(By.XPath("//a[contains(.,'Create New')]")).Click();
         }
 
@@ -81,18 +81,29 @@ namespace ConsoleApp1
             SelectTypeCode(newtypecode);
 
             //Enter code
-            IWebElement Code = driver.FindElement(By.Id("Code"));
-            Code.Clear();
-            Code.SendKeys(newcode);
-            
+            if(newcode != null)
+            {
+                IWebElement Code = driver.FindElement(By.Id("Code"));
+                Code.Clear();
+                Code.SendKeys(newcode);
+            }
+
             // Enter description
-            IWebElement Description = driver.FindElement(By.Id("Description"));
-            Description.Clear();
-            Description.SendKeys(newdesc);
+            if(newdesc != null)
+            {
+                IWebElement Description = driver.FindElement(By.Id("Description"));
+                Description.Clear();
+                Description.SendKeys(newdesc);
+            }
 
             // Enter Price
-            driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]")).Clear();
-            driver.FindElement(By.Id("Price")).SendKeys(newprice);
+            if (newprice != null)
+            {
+                IWebElement price1 = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]"));
+                price1.Clear();
+                IWebElement Price = driver.FindElement(By.Id("Price"));
+                Price.SendKeys(newprice);
+            }
                         
             // click save
             driver.FindElement(By.Id("SaveButton")).Click();
